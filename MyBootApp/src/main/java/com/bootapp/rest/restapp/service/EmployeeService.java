@@ -1,6 +1,7 @@
 package com.bootapp.rest.restapp.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class EmployeeService {
 					.collect(Collectors.toList());
 		
 		return filteredList;
+	}
+
+	public Optional<Employee> getEmployeeById(int eid) {
+		 
+		return employeeRepository.findById(eid);
 	}
 
 }

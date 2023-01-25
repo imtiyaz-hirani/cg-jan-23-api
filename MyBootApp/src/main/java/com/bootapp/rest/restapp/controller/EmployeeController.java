@@ -2,6 +2,7 @@ package com.bootapp.rest.restapp.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -68,6 +70,38 @@ public class EmployeeController {
 		
 		List<Employee> list = employeeService.getEmployeesBySalaryAndCity(salary,city);
 		return list; 
+	}
+	
+	
+	@PutMapping("/api/employee/edit/{eid}")
+	public ResponseEntity<String> editEMployee(@PathVariable("eid") int eid, 
+							@RequestBody Employee employeeNew) {
+		/* Step 1: check if this id given is valid by fetching the record from DB */
+		Optional<Employee> optional = employeeService.getEmployeeById(eid);
+		
+		if(!optional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid ID");
+		}
+		
+		Employee employeeDB = optional.get(); //User given employee value
+		
+		/* Step 2: Set New value to DB value */
+		if(employeeNew.getName() != null)
+			employeeDB.setName(employeeNew.getName());
+		if(employeeNew.getCity() != null)
+			employeeDB.setCity(employeeNew.getCity());
+		if(employeeNew.getSalary() != 0.0)
+			employeeDB.setSalary(employeeNew.getSalary());
+		if(employeeNew.getJoiningDate() != null)
+			employeeDB.setJoiningDate(employeeNew.getJoiningDate());
+		if(employeeNew.getGender() != null)
+			employeeDB.setGender(employeeNew.getGender());
+		
+		
+		/* Save updated employeeDB value in DB */
+		employeeService.postEmployee(employeeDB);
+		return ResponseEntity.status(HttpStatus.OK).body("Employee record Edited..");
+		
 	}
 }
 
