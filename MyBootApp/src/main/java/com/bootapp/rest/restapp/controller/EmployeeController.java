@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bootapp.rest.restapp.data.UserRepository;
 import com.bootapp.rest.restapp.model.Department;
 import com.bootapp.rest.restapp.model.Employee;
+import com.bootapp.rest.restapp.model.User;
 import com.bootapp.rest.restapp.service.DepartmentService;
 import com.bootapp.rest.restapp.service.EmployeeService;
 
@@ -27,6 +30,12 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeService employeeService; 
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/api/hello")
 	public String sayHello() {
@@ -43,6 +52,22 @@ public class EmployeeController {
 		employee.setDepartment(department);
 		
 		employee.setJoiningDate(LocalDate.now());
+		
+		//Fetch User info from employee input and save it in DB 
+		User user = employee.getUser(); //I have username and password 
+		//I will assign the role
+		user.setRole("EMPLOYEE");
+		
+		//Converting plain text password into encoded text
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		//attach encoded password to user
+		user.setPassword(encodedPassword);
+		
+		user  = userRepository.save(user);
+		
+		
+		//Attach user object to employee
+		employee.setUser(user);
 		
 		//save the employee object
 		employeeService.postEmployee(employee); 
@@ -96,7 +121,6 @@ public class EmployeeController {
 			employeeDB.setJoiningDate(employeeNew.getJoiningDate());
 		if(employeeNew.getGender() != null)
 			employeeDB.setGender(employeeNew.getGender());
-		
 		
 		/* Save updated employeeDB value in DB */
 		employeeService.postEmployee(employeeDB);
