@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bootapp.rest.restapp.data.EmployeeRespository;
+import com.bootapp.rest.restapp.data.ProjectRepository;
 import com.bootapp.rest.restapp.model.Employee;
+import com.bootapp.rest.restapp.model.Project;
 
 @Service
 public class EmployeeService {
 
 	@Autowired
 	private EmployeeRespository employeeRepository; 
+	@Autowired
+	private ProjectRepository projectRepository;
 	
 	public void postEmployee(Employee employee) {
 		// save employee in DB 
@@ -48,6 +52,16 @@ public class EmployeeService {
 	public Optional<Employee> getEmployeeById(int eid) {
 		 
 		return employeeRepository.findById(eid);
+	}
+
+	public Optional<Project> getProjectById(int pid) {
+		// TODO Auto-generated method stub
+		return projectRepository.findById(pid);
+	}
+
+	public List<Employee> getEmployeeByProjectId(int pid) {
+		 
+		return employeeRepository.getEmployeeByProjectId(pid);
 	}
 
 }

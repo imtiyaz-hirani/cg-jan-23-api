@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bootapp.rest.restapp.data.UserRepository;
 import com.bootapp.rest.restapp.model.Department;
 import com.bootapp.rest.restapp.model.Employee;
+import com.bootapp.rest.restapp.model.Project;
 import com.bootapp.rest.restapp.model.User;
 import com.bootapp.rest.restapp.service.DepartmentService;
 import com.bootapp.rest.restapp.service.EmployeeService;
+import com.bootapp.rest.restapp.service.ProjectService;
 
 @RestController
 public class EmployeeController {
@@ -36,6 +38,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ProjectService projectService;
 	
 	@GetMapping("/api/hello")
 	public String sayHello() {
@@ -64,7 +69,6 @@ public class EmployeeController {
 		user.setPassword(encodedPassword);
 		
 		user  = userRepository.save(user);
-		
 		
 		//Attach user object to employee
 		employee.setUser(user);
@@ -126,6 +130,69 @@ public class EmployeeController {
 		employeeService.postEmployee(employeeDB);
 		return ResponseEntity.status(HttpStatus.OK).body("Employee record Edited..");
 		
+	}
+	
+	
+	@GetMapping("/api/employee/project/{pid}")
+	public ResponseEntity<Object> getEmployeeByProject(@PathVariable("pid") int pid){
+		/* Validate ID: fetch project from DB */
+		Optional<Project> optional = employeeService.getProjectById(pid);
+		if(!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid ID"); 
+		
+		Project project = optional.get();
+		
+		List<Employee> list = employeeService.getEmployeeByProjectId(pid);
+		return ResponseEntity.status(HttpStatus.OK).body(list);
+	}
+	
+	@PostMapping("/api/project")
+	public ResponseEntity<String> postProejct(@RequestBody Project project) {
+		projectService.insertProject(project);
+		return ResponseEntity.status(HttpStatus.OK).body("Project Posted..");
+	}
+	
+	@PostMapping("/api/employee/project/{eid}/{pid}")
+	public ResponseEntity<String> assignEmployeeToProject(@PathVariable("eid") int eid ,
+								   @PathVariable("pid") int pid) {
+		
+		Optional<Employee> optionalE = employeeService.getEmployeeById(eid);
+		if(!optionalE.isPresent()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid ID");
+		}
+		
+		Optional<Project> optionalP = employeeService.getProjectById(pid);
+		if(!optionalP.isPresent()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid ID");
+		}
+		
+		Employee e = optionalE.get();
+		Project p = optionalP.get();
+		
+		//List of projects that employee is currently working on
+		List<Project> listProjects = e.getProjects();
+		//ADD new project p to this list
+		listProjects.add(p);
+		
+		//Attach the list to employee
+		e.setProjects(listProjects);
+		
+		//save employee in DB
+		employeeService.postEmployee(e);
+		return ResponseEntity.status(HttpStatus.OK).body("Project assigned to Employee");
+	}
+	
+	@GetMapping("/api/project/employee/{eid}")
+	public ResponseEntity<Object> getProjectByEmployeeId(@PathVariable("eid") int eid) {
+		/* Validate ID: fetch project from DB */
+		Optional<Employee> optional = employeeService.getEmployeeById(eid);
+		if(!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid ID"); 
+		
+		Employee employee = optional.get();
+		
+		List<Project> list =   projectService.getProjectByEmployeeId(employee);
+		return ResponseEntity.status(HttpStatus.OK).body(list); 
 	}
 }
 
