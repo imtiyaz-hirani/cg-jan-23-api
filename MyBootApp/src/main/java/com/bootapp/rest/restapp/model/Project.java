@@ -44,6 +44,11 @@ public class Project {
 	public void setCredits(int credits) {
 		this.credits = credits;
 	}
+
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", title=" + title + ", credits=" + credits + "]";
+	}
 	
 	
 }
