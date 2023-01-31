@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <style>
+            label{
+                font-size: large;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <h2>HTML Form Elements</h2>
+            <form method="GET" action="">
+                <label> Enter your name </label>
+                <input type="text" name="name" required pattern="[a-zA-Z ]+" />
+                <small>Name should not have numeric character</small>
+                <br /><br />
+                <label>Enter your Email </label>
+                <input type="email" name="email" required readonly disabled value="harry@gmail.com" placeholder="This will be your username">
+                <br /><br />
+                <label>Enter your Password </label>
+                <input type="password" name="password" required pattern="[a-zA-Z0-9 $#_]{4,}">
+                <br /><br />
+                <label>Your Fav Sport </label>
+                <input type="checkbox" value="Cricket" name="sport"> 
+                <label>Cricket</label> 
+                &nbsp;&nbsp; 
+                <input type="checkbox" value="Chess" name="sport"> 
+                <label>Chess</label> 
+                &nbsp;&nbsp; 
+                <input type="checkbox" value="Football" name="sport"> 
+                <label>Football</label> 
+                <br /><br />
+                <label>Are you still a college student?</label>
+                <input type="radio" value="yes" name="college"> 
+                <label>YES</label>
+                &nbsp;&nbsp; 
+                <input type="radio" value="no" name="college"> 
+                <label>NO</label>
+                <br /><br />
+                <label>Address</label>
+                <br />
+                <textarea rows="3" cols="30" name="address"></textarea>
+                <br /><br />
+                <label>Which City do you live in?</label>
+                <select name="city">
+                    <option value="">----Select City-----</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Pune">Pune</option>
+                </select>
+                <br /><br />
+                <label>Enter your age</label>
+                <input type="number" name="age" required min="0" max="200" pattern="[0-9]+">
+                <br /><br />
+                <label>Upload your CV</label>
+                <input type="file" required>
+                <br /><br />
+                <label>Select your Joining Date: </label>
+                <input type="date" name="depDate" required>
+                <br /><br />
+                <label>Give the Rating</label>
+                <input type="range" min="0" max="5" step="1" name="rating" required>
+                <br /><br />
+                <input type="submit" value="post info">
+
+            </form>
+        </div>
+        
+    </body>
+</html>
+<!-- form/Multipart  -->
