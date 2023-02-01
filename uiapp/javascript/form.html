@@ -25,6 +25,18 @@
                 
                 console.log(favSport);
 
+                let address = document.myForm.address.value; 
+                let college = document.myForm.college.value;
+                console.log(address + '---' + college);
+
+                let city = document.myForm.city.value;
+                let age = document.myForm.age.value;
+                let joiningDate = document.myForm.joiningDate.value;
+                let rating = document.myForm.rating.value;
+                let cv = document.myForm.cv.value;
+                console.log(city + ','+ age + ',' + joiningDate + ','+rating);
+                console.log(cv);
+  
                 return false;
             }
         </script>
@@ -77,10 +89,10 @@
                 <input type="number" name="age"   min="0" max="200" >
                 <br /><br />
                 <label>Upload your CV</label>
-                <input type="file" >
+                <input type="file" name="cv">
                 <br /><br />
                 <label>Select your Joining Date: </label>
-                <input type="date" name="depDate"  >
+                <input type="date" name="joiningDate"  >
                 <br /><br />
                 <label>Give the Rating</label>
                 <input type="range" min="0" max="5" step="1" name="rating"  >
