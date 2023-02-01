@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <script>
+            function calc(op){
+                /* verify button click */
+                console.log(op);  
+                /* Read Input values */
+                let n1 = document.getElementById('no1').value;
+                let n2 = document.getElementById('no2').value;
+                /* verify input values */
+                console.log(n1 + '---' + n2);
+                
+                /* Convert n1 and n2 to number */
+                n1 = Number(n1);
+                n2 = Number(n2);
+                
+                /* compute result */
+                let result = 0; 
+                switch(op){
+                    case 'ADD':
+                        result = n1+n2;
+                        break;
+                    case 'SUB': 
+                        result = n1-n2;
+                        break;    
+                }
+                /* Display in div(id=result)*/
+                document.getElementById('result').innerHTML= 'Result is: ' + result; 
+            }
+        </script>
+        <style>
+            label{
+                font-size: large;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <h1>Calc Program</h1>
+            <label>Enter No 1: </label>
+            <input type="number" name="no1" id="no1"/>
+            <br /><br />
+            <label>Enter No 2: </label>
+            <input type="number" name="no2" id="no2"/>
+            <br /><br />
+            <button onClick='calc("ADD")'>ADD</button> 
+            &nbsp;&nbsp;
+            <button onClick='calc("SUB")'>SUB</button> 
+        </div>
+        <br /><br />
+        <div id="result"></div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <head>
+            <script>
+                function showAddress(){
+                    //console.log('function called...');
+                    //Reach out to div block(id=addressBlock)
+                    document.getElementById('addressBlock').style.display='block';
+                }
+            </script>
+    </head>
+    <body>
+        <div> 
+            <button onClick="showAddress()">Show Address</button>
+        </div>
+        <br />
+        <div style="display: none;" id="addressBlock">
+            <h2>Address</h2>
+            <p>101, Kingston avenue, Mumbai-92</p>
+        </div>
+        
+
+    </body>
+</html>
