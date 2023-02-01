@@ -1,48 +1,10 @@
 <html>
     <head>
-        <style>
-            label{
-                font-size: large;
-                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            }
-        </style>
-        <script>
-            function readFormAndValidate(){
-                let name = document.getElementById('name').value;
-                console.log('Name: ' + name);
-                let email = document.myForm.email.value; 
-                console.log('Email: ' + email);
-                let password = document.myForm.password.value; 
-                console.log('Password: ' + password);
-
-                let sports = document.myForm.sport;
-                let favSport = [];
-
-                for(let i=0; i<sports.length; i++){
-                    if(sports[i].checked == true)
-                        favSport.push(sports[i].value);
-                }
-                
-                console.log(favSport);
-
-                let address = document.myForm.address.value; 
-                let college = document.myForm.college.value;
-                console.log(address + '---' + college);
-
-                let city = document.myForm.city.value;
-                let age = document.myForm.age.value;
-                let joiningDate = document.myForm.joiningDate.value;
-                let rating = document.myForm.rating.value;
-                let cv = document.myForm.cv.value;
-                console.log(city + ','+ age + ',' + joiningDate + ','+rating);
-                console.log(cv);
-  
-                return false;
-            }
-        </script>
+         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="formscript.js"></script>
     </head>
 
-    <body>
+    <body onLoad="mainFunc()">
         <div>
             <h2>HTML Form Elements</h2>
             <form id="myForm" name="myForm" onSubmit="return readFormAndValidate()">
