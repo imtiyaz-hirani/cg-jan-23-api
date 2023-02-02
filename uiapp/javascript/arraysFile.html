@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <style>
+            .allelements{
+                font-size: larger;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+        </style>
+        <script rel="text/javascript" src="arraysApp.js"></script>
+    </head>
+    <body onLoad="iterateArray()">
+        <div> 
+            <h2>All Array Elements </h2>
+            <button onClick="fetchAllElements()">Fetch all Elements</button>
+            <div id="allelements" class="allelements"></div>
+            <div id="arrayLength"></div>
+            
+        </div>
+        <hr>
+        <div >
+            <button onClick="sortArray('ASC')">Sort Array in ASC Order</button>
+            <button onClick="sortArray('DESC')">Sort Array in DESC Order</button>
+        </div>
+        
+    </body>
+</html>
