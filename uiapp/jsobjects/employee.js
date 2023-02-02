@@ -33,9 +33,17 @@ const e4={
 let employees = [e1,e2,e3,e4]; 
 
 function showEmployees(){
-    let str ='';
+    displayEmployees(employees);
+}
+
+function displayEmployees(emp){
     let i=1;
-    employees.forEach(e=>{
+    document.getElementById('emp1').innerHTML='';
+    document.getElementById('emp2').innerHTML='';
+    document.getElementById('emp3').innerHTML='';
+    document.getElementById('emp4').innerHTML='';
+
+    emp.forEach(e=>{
          document.getElementById('emp' + i).innerHTML= '<th scope="row">' 
                                     + e.id + '</th>' +
                                     '<td>' + e.name + ' </td>' + 
@@ -45,4 +53,33 @@ function showEmployees(){
        i++;                          
     }); 
 }
+
+function sortEmployeesBySalary(order){
+    let temp=[];
+    switch(order){
+        case 'ASC':
+            temp = employees.sort((e1,e2)=>e1.salary - e2.salary);
+            break;
+        case 'DESC':
+            temp = employees.sort((e1,e2)=>e2.salary - e1.salary);
+            break;
+    }
+    displayEmployees(temp);
+}
+
+function filterEmployees(str){
+     if(str == '' || str == undefined){
+        displayEmployees(employees);
+     }
+     else{
+        let temp =  employees.filter(e=>e.department.toLowerCase().startsWith(str.toLowerCase()));
+        displayEmployees(temp);
+     }
+    
+}
+
+    
+ 
+
+
  
