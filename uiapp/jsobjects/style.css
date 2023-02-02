@@ -1,0 +1,8 @@
+.empbox{
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 7px 10px black;
+    width: 100%;
+    padding: 10px;
+     
+}
