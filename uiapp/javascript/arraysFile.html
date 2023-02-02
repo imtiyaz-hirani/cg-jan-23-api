@@ -16,11 +16,23 @@
             <div id="arrayLength"></div>
             
         </div>
-        <hr>
+        <br /><br />
         <div >
             <button onClick="sortArray('ASC')">Sort Array in ASC Order</button>
             <button onClick="sortArray('DESC')">Sort Array in DESC Order</button>
         </div>
-        
+        <br /><br />
+        <label>Enter the number for filteration</label>
+        <input type="number" name="num" id="num">
+        <br /><br />
+        <button onClick="filterArray('SMALL')">Filter for smaller elements</button>
+        <button onClick="filterArray('LARGE')">Filter for larger elements</button>
+        <br /><br />
+        <label>Enter the number to Search</label>
+        <input type="number" name="snum" id="snum">
+        <br /><br />
+        <button onClick="searchElement()">Search</button>
+        <br /><br />
+        <div id="findResult"></div>
     </body>
 </html>
