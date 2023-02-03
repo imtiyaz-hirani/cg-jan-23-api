@@ -18,3 +18,8 @@ async function getAllPosts(){
      
 }
 
+
+function showForm(){
+    document.getElementById('postform').style.display = 'block'; 
+}
+
