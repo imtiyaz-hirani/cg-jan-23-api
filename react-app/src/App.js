@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Arry from "./components/Arry";
+import Emp from "./components/Emp";
 
 export default class App extends Component{
  
@@ -8,6 +9,8 @@ export default class App extends Component{
     return(
         <div>
            <Arry  />
+           <hr />
+           <Emp />
         </div>
     );
   }
