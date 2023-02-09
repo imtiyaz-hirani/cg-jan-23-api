@@ -3,6 +3,7 @@ import Arry from "./components/Arry";
 import Emp from "./components/Emp";
 import User from "./components/User";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Post from "./components/Post";
 
 export default class App extends Component{
  
@@ -12,9 +13,11 @@ export default class App extends Component{
         <div>
            {/* <Arry  />
            <hr />
-           <Emp /> */}
+           <Emp /> 
 
            <User />
+           */}
+           <Post />
         </div>
     );
   }
