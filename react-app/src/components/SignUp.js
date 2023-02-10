@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Component } from "react";
 
 export default class SignUp  extends Component{
@@ -11,7 +12,8 @@ export default class SignUp  extends Component{
                     email: '',
                     password: ''
                 },
-                errors: {}
+                errors: {},
+                msg: ''
         }
     }
 
@@ -21,6 +23,7 @@ export default class SignUp  extends Component{
         return(
             <div>
                 <h1>Sign Up</h1>
+                <span>{this.state.msg}</span> <br />
                 <label>Enter the name: </label>
                 <input type="text" 
                         name="name"
@@ -60,6 +63,7 @@ export default class SignUp  extends Component{
         if(this.handleValidation()){
             console.log(this.state.user);
             /* Call the API */
+           this.postUser(this.state.user);
         }
         else{
             /* Display error messages */
@@ -93,5 +97,20 @@ export default class SignUp  extends Component{
         });
 
         return formValid; 
+    }
+
+
+    async postUser(person){
+        try {
+            const response = axios.post("http://localhost:8585/person/add", person);
+            const data = (await response).data;
+            console.log('API success');
+            console.log(data);
+          } catch (error) {
+            console.error(error.response.data.msg);
+            this.setState({
+                msg: error.response.data.msg
+            })
+          }
     }
 }
