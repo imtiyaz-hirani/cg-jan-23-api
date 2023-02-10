@@ -24,7 +24,7 @@ export default class User extends Component{
         return (
           <div>
             <h1>User List</h1>
-            <table class="table">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>

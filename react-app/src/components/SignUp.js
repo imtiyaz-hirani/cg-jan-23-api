@@ -98,8 +98,6 @@ export default class SignUp  extends Component{
 
         return formValid; 
     }
-
-
     async postUser(person){
         try {
             const response = axios.post("http://localhost:8585/person/add", person);
