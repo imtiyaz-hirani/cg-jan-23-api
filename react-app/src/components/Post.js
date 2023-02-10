@@ -12,7 +12,7 @@ export default class Post extends Component {
 
   componentDidMount() {
     /* Call the API */
-    this.getUsers();
+    this.getPosts();
   }
 
   render() {
@@ -35,7 +35,7 @@ export default class Post extends Component {
     );
   }
 
-  async getUsers() {
+  async getPosts() {
     try {
       const response = axios.get("https://jsonplaceholder.typicode.com/posts");
       const data = (await response).data;

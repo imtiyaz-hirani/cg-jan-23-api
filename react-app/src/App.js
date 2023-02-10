@@ -4,6 +4,7 @@ import Emp from "./components/Emp";
 import User from "./components/User";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Post from "./components/Post";
+import SignUp from "./components/SignUp";
 
 export default class App extends Component{
  
@@ -16,8 +17,10 @@ export default class App extends Component{
            <Emp /> 
 
            <User />
-           */}
+           
            <Post />
+          */}
+           <SignUp />
         </div>
     );
   }
