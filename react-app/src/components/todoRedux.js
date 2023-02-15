@@ -12,7 +12,7 @@ export  class TodoRedux extends Component{
 
     componentDidMount(){
         //call the API : call the ACTION 
-        this.props.getAllTodos(); 
+        this.props.listTodo(); 
     }
 
     render(){
@@ -22,7 +22,7 @@ export  class TodoRedux extends Component{
                  {
                     this.props.todoList.list.map((t,index)=>(
                         <div>
-                            <li key={index}>{t.title}</li>
+                            <li key={t.id}>{t.title}</li>
                         </div>
                     ))
                  }
@@ -34,7 +34,7 @@ export  class TodoRedux extends Component{
 
 function mapStateToProps(state){
     return {
-        todoList : state.listTodo
+        todoList : state.todo
     }    
 }
 
