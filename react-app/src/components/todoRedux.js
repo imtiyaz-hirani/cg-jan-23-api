@@ -34,7 +34,7 @@ export  class TodoRedux extends Component{
 
 function mapStateToProps(state){
     return {
-        todoList : state.todo
+        todoList : state.todo 
     }    
 }
 

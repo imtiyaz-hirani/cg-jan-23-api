@@ -50,7 +50,7 @@ export default class NavBar extends Component {
                     Sign Up
                   </Link>
                 </li>
-                
+                    
               </ul>
             </div>
           </div>

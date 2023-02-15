@@ -64,6 +64,11 @@ public class EmployeeService {
 		return employeeRepository.getEmployeeByProjectId(pid);
 	}
 
+	public List<Employee> getAllEmployees() {
+		 
+		return employeeRepository.findAll();
+	}
+
 }
 
 

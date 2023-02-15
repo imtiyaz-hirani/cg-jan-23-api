@@ -1,17 +1,16 @@
 import { Component } from "react";
-import Arry from "./components/Arry";
-import Emp from "./components/Emp";
-import User from "./components/User";
+  import User from "./components/User";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Post from "./components/Post";
 import SignUp from "./components/SignUp";
-import { Outlet, Route, Routes } from "react-router-dom";
+import {   Route, Routes } from "react-router-dom";
 import PageNotFound from "./components/PageNotFound";
 import NavBar from "./components/navbar";
 import TodoRedux from "./components/todoRedux";
 import { Provider } from "react-redux";
 import {store} from "./store";
-
+import Employee from "./components/Employee";
+ 
 export default class App extends Component{
  
   /* Which function does react call : render() */
@@ -23,7 +22,7 @@ export default class App extends Component{
           <Routes>
             <Route path="/" element={ <TodoRedux />} /> 
             <Route path="/posts" element={ <Post />} /> 
-            <Route path="/employee" element={ <Emp />} /> 
+            <Route path="/employee" element={ <Employee />} /> 
             <Route path="/sign-up" element={ <SignUp />} /> 
             <Route path="/users" element={ <User />} /> 
             <Route path="*" element={ <PageNotFound />} />
