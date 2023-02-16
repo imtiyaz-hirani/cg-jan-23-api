@@ -1,5 +1,6 @@
 package com.bootapp.rest.restapp.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class DepartmentService {
 		//if department does not exist, optional will be null 
 		
 		return null;
+	}
+
+	public List<Department> getAll() {
+		// TODO Auto-generated method stub
+		return departmentRepository.findAll();
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bootapp.rest.restapp.data.PersonRepository;
+import com.bootapp.rest.restapp.dto.Message;
 import com.bootapp.rest.restapp.model.Person;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -42,16 +43,4 @@ public class TestController {
 }
 
 
-class Message{
-	private String msg;
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	} 
-	
-	
-}
+ 
