@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import {listDepartment} from '../store/action/department';
+import {listDepartment,addDepartment} from '../../store/action/department';
 
 export class AddEmployee extends Component{
 
@@ -14,10 +14,7 @@ export class AddEmployee extends Component{
                 salary: 0,
                 joiningDate: '',
                 gender: '',
-                department:{
-                    id: '',
-                    name: ''
-                },
+                departmentID: '',
                 user: {
                     username: '',
                     password: '',
@@ -76,23 +73,24 @@ export class AddEmployee extends Component{
                     <select name="gender" 
                             value={this.state.employee.gender} 
                             onChange={this.changeHandler} > 
-                        <option value="MALE">MALE</option>
-                        <option value="FEMALE">FEMALE</option>
+                        <option key={1} value="MALE">MALE</option>
+                        <option key={2} value="FEMALE">FEMALE</option>
                     </select>
                     <span style={{ color : 'red'}}>{this.state.errors['gender']}</span>
                     <br /><br />
                     <label>Select Department: </label>
-                    <select name="departments" 
-                            value={this.state.employee.department.id} 
+                    <select name="departmentID" 
+                            value={this.state.employee.departmentID} 
                             onChange={this.changeHandler} > 
-                        {/* {this.props.departmentList.list.map(d=>(
+                        {  this.props.dept.list.map(d=>(
                             <option key={d.id} value={d.id}>{d.name}</option>
-                        ))} */}
-                        {console.log(this.props.listDepartment)}
+                            
+                        ))  }
+                         
                     </select>
                     <span style={{ color : 'red'}}>{this.state.errors['departmentId']}</span>
-                    
-                    <button onClick={this.onAdd}>Add Employee</button>
+                    <br /><br />
+                    <button onClick={this.onAdd} className="btn btn-primary">Add Employee</button>
                 </p>
                  
               </div>
@@ -129,7 +127,7 @@ handleValidation(){
     let salary = this.state.employee.salary;
     let joiningDate = this.state.employee.joiningDate;
     let gender = this.state.employee.gender;
-    let departmentId = this.state.employee.department.id;
+    let departmentId = this.state.employee.departmentID;
      
     let tempErrors={}
     let formValid = true; 
@@ -173,8 +171,8 @@ async postEmployee(employee){
 
 function mapStateToProps(state){
     return {
-        listDepartment : state.department
+        dept : []
     }    
 }
 
-export default connect(mapStateToProps, {listDepartment})(AddEmployee); 
+export default connect(mapStateToProps, {listDepartment,addDepartment})(AddEmployee); 

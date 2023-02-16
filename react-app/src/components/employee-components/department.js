@@ -102,7 +102,7 @@ async postDepartment(department){
 }
 function mapStateToProps(state){
     return {
-        departmentList : state.department 
+         
     }    
 }
 

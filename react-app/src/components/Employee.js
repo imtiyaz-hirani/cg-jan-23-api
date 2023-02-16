@@ -1,10 +1,12 @@
 import { Component } from "react";
+import { connect } from "react-redux";
  
-import { AddEmployee } from "../components/addEmployee";
+import { AddEmployee } from "./employee-components/addEmployee";
 import Department from "./employee-components/department";
 import EmployeeList from "./employee-components/employeeList";
+import { listDepartment } from "../store/action/department";
 
-export default class Employee extends Component {
+export  class Employee extends Component {
   constructor(props) {
     super(props);
 
@@ -13,6 +15,9 @@ export default class Employee extends Component {
     };
   }
  
+  componentDidMount(){
+    this.props.listDepartment();
+  }
   render() { 
     return (
       <div className="container-fliud">
@@ -38,7 +43,7 @@ export default class Employee extends Component {
           <div className="col-lg-9">
               {this.state.componentNum === 1?
                   <EmployeeList />:this.state.componentNum === 2?
-                  <Department />:<AddEmployee />}
+                  <Department />:<AddEmployee dept={this.props.dept} />}
           </div> 
         </div>
       </div>
@@ -48,5 +53,14 @@ export default class Employee extends Component {
 
    
 };
+
+
+function mapStateToProps(state){
+  return {
+      dept : state.department
+  }    
+}
+
+export default connect(mapStateToProps, {listDepartment })(Employee); 
 
  
