@@ -19,11 +19,11 @@ export class Department extends Component {
   render() {
     return (
       <div>
-        <div class="card">
-          <h5 class="card-header">Add Department</h5>
-          <div class="card-body">
-            <h5 class="card-title">Enter Department Info: </h5>
-            <p class="card-text">
+        <div className="card">
+          <h5 className="card-header">Add Department</h5>
+          <div className="card-body">
+            <h5 className="card-title">Enter Department Info: </h5>
+            <p className="card-text">
             <span>{this.state.msg}</span> <br />
                <label>Department Name: </label>
                <input type="text" 

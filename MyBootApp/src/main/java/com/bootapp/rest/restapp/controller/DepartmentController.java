@@ -32,7 +32,7 @@ public class DepartmentController {
 		}
 		catch(Exception e) {
 			m.setMsg("Could not process the request, Try Again");
-			return ResponseEntity.status(HttpStatus.PROCESSING).body(m);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(m);
 		}
 			
 		}
