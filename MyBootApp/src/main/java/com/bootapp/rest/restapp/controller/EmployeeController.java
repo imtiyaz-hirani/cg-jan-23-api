@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bootapp.rest.restapp.data.UserRepository;
+import com.bootapp.rest.restapp.dto.Message;
 import com.bootapp.rest.restapp.model.Department;
 import com.bootapp.rest.restapp.model.Employee;
 import com.bootapp.rest.restapp.model.Project;
@@ -50,7 +51,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/api/employee/add/{did}")
-	public ResponseEntity<String> postEmployee(@RequestBody Employee employee, 
+	public ResponseEntity<Object> postEmployee(@RequestBody Employee employee, 
 							 @PathVariable("did") int did) {
 		//Fetch Department Object based on did. 
 		Department department = departmentService.getDepartmentById(did);
@@ -61,6 +62,7 @@ public class EmployeeController {
 		employee.setJoiningDate(LocalDate.now());
 		
 		//Fetch User info from employee input and save it in DB 
+		
 		User user = employee.getUser(); //I have username and password 
 		//I will assign the role
 		user.setRole("EMPLOYEE");
@@ -77,10 +79,11 @@ public class EmployeeController {
 		
 		//save the employee object
 		employeeService.postEmployee(employee); 
-		
-		return ResponseEntity.status(HttpStatus.OK).body("Employee Posted..");
+		Message m = new Message();
+		m.setMsg("Employee Registered");
+		return ResponseEntity.status(HttpStatus.OK).body(m);
 	}
-	
+	 
 	/* Get API
 	  display all employees on the basis of department ID
 	  PathVariable: did  */

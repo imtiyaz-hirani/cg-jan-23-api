@@ -49,18 +49,12 @@ export  class Employee extends Component {
       </div>
     );
   }
- 
-
-   
 };
-
-
 function mapStateToProps(state){
   return {
       dept : state.department
   }    
 }
-
 export default connect(mapStateToProps, {listDepartment })(Employee); 
 
  
