@@ -1,8 +1,10 @@
 import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+ 
  import { login } from "../../store/action/login";
+import Employee from "../Employee";
+ 
 
 export class Login extends Component {
   constructor(props) {
@@ -14,14 +16,18 @@ export class Login extends Component {
             password: ''
         },
         errors: {},
-        msg: ''
+        msg: '',
+        redirect: '/employee',
+        isLoggedIn: false
     };
   }
 
   componentDidMount() {}
 
   render() {
+     
     return (
+        this.state.isLoggedIn?<div ><Employee /></div>  : 
       <div>
         <div className="row">
           <div className="col-sm-3"></div>
@@ -87,7 +93,7 @@ export class Login extends Component {
         if(this.handleValidation()){
             
             /* Call the API */
-           this.loginUser(this.state.user);
+           return this.loginUser(this.state.user);
         }
         else{
             /* Display error messages */
@@ -128,9 +134,11 @@ export class Login extends Component {
             
             console.log('login success ' + data);
             localStorage.setItem('username', data.username);
-             <Navigate to="/employee" />   
-            //this.props.login(data);
-          } catch (error) {
+            this.setState({
+                isLoggedIn : true
+            })
+            
+           } catch (error) {
             console.error(error);
             this.setState({
                 msg: 'Invalid Credentials'
