@@ -5,17 +5,9 @@ import Login from "./auth/login";
 export default class NavBar extends Component {
   constructor() {
     super();
-
     this.state = {
       isLoggedIn : false
     };
-
-    let username = localStorage.getItem('username');
-     
-    if(username === null || username === undefined) 
-          this.setState({isLoggedIn: false})
-    else
-          this.setState({isLoggedIn: true})
   }
 
   componentDidMount(){
@@ -28,8 +20,7 @@ export default class NavBar extends Component {
   }
 
   render() {
-    return (
-       
+    return ( 
       <div >
            <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <div className="container-fluid">
@@ -71,10 +62,8 @@ export default class NavBar extends Component {
                   </li>
                 </ul>
               <div className="col-sm-2">
-                {this.state.isLoggedIn? <Link to="/logout"><button className="btn btn-outline-danger">
-                   Logout </button>  </Link>  : 
-                <Link to ='/'><button className="btn btn-outline-success">
-                   Login </button></Link>
+                { this.state.isLoggedIn? <Link to="/logout"><button className="btn btn-outline-danger">
+                   Logout </button>  </Link>   : ''
                 }
                
               
