@@ -5,21 +5,31 @@ import { AddEmployee } from "./employee-components/addEmployee";
 import Department from "./employee-components/department";
 import EmployeeList from "./employee-components/employeeList";
 import { listDepartment } from "../store/action/department";
+import Login from "./auth/login";
 
 export  class Employee extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      componentNum: 0
+      componentNum: 0,
+      isLoggedIn: false
     };
   }
  
   componentDidMount(){
     this.props.listDepartment();
+    let username = localStorage.getItem('username');
+     
+    if(username === null || username === undefined) 
+          this.setState({isLoggedIn: false})
+    else
+          this.setState({isLoggedIn: true})
   }
   render() { 
+    
     return (
+      !this.state.isLoggedIn?<div ><Login /></div>  : 
       <div className="container-fliud">
         <div className="row">
           <div className="col-sm-3">

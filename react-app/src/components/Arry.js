@@ -20,8 +20,8 @@ export default class Arry extends Component{
                 }
 
                 <br />
-                <button onClick={()=>(this.sortArry('ASC'))}>Sort-ASC</button> 
-                <button onClick={()=>(this.sortArry('DESC'))}>Sort-DESC</button>
+                <button onClick={()=>(this.sortArry('ASC'))} id='btn-asc'>Sort-ASC</button> 
+                <button onClick={()=>(this.sortArry('DESC'))} id='btn-desc'>Sort-DESC</button>
             </div>
         );
     }

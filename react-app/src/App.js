@@ -12,6 +12,7 @@ import {store} from "./store";
 import Employee from "./components/Employee";
 import './App.css';
 import { Login } from "./components/auth/login";
+import Logout from "./components/auth/logout";
 
 export default class App extends Component{
  
@@ -22,7 +23,8 @@ export default class App extends Component{
           <Provider store={store}> 
           <NavBar />
           <Routes>
-            <Route path="/" element={ <Login />} /> 
+            <Route path="/" element={ <Login />} />
+            <Route path="/logout" element={ <Logout />} />
             <Route path="/posts" element={ <Post />} /> 
             <Route path="/employee" element={ <Employee />} /> 
             <Route path="/sign-up" element={ <SignUp />} /> 

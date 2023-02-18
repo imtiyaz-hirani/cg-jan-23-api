@@ -93,7 +93,7 @@ export class Login extends Component {
         if(this.handleValidation()){
             
             /* Call the API */
-           return this.loginUser(this.state.user);
+            this.loginUser(this.state.user);
         }
         else{
             /* Display error messages */
@@ -127,7 +127,7 @@ export class Login extends Component {
     async loginUser(user){
         let authCode = 'Basic ' + btoa(user.username + ':' + user.password);
         try {
-            const response = axios.get('http://localhost:8585/api/user/login',{
+            const response = axios.get('http://localhost:8585/api/user/login/',{
                 headers: {'Authorization': authCode },
             })
             const data = (await response).data;

@@ -1,15 +1,35 @@
 import { Component } from "react";
 import { Link, Outlet } from "react-router-dom";
+import Login from "./auth/login";
 
 export default class NavBar extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      isLoggedIn : false
+    };
+
+    let username = localStorage.getItem('username');
+     
+    if(username === null || username === undefined) 
+          this.setState({isLoggedIn: false})
+    else
+          this.setState({isLoggedIn: true})
+  }
+
+  componentDidMount(){
+    let username = localStorage.getItem('username');
+     
+    if(username === null || username === undefined) 
+          this.setState({isLoggedIn: false})
+    else
+          this.setState({isLoggedIn: true})
   }
 
   render() {
     return (
+       
       <div >
            <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <div className="container-fluid">
@@ -51,7 +71,13 @@ export default class NavBar extends Component {
                   </li>
                 </ul>
               <div className="col-sm-2">
-              <button className="btn btn-outline-success"  >Login</button>
+                {this.state.isLoggedIn? <Link to="/logout"><button className="btn btn-outline-danger">
+                   Logout </button>  </Link>  : 
+                <Link to ='/'><button className="btn btn-outline-success">
+                   Login </button></Link>
+                }
+               
+              
               </div>
             </div>
             </div>
@@ -60,4 +86,5 @@ export default class NavBar extends Component {
       </div>
     );
   }
+ 
 }
